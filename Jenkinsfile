@@ -40,6 +40,14 @@ pipeline {
                 sh 'npm run build'
             }
         }
+        stage('Fix Git Author') {
+            steps {
+                sh '''
+                  git config --global user.email "arbhav1261@gmail.com"
+                  git config --global user.name "Arbhav Chauhan"
+                '''
+            }
+        }
 
         stage('Deploy to Vercel') {
             steps {
