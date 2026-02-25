@@ -6,13 +6,14 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Check Node') {
             steps {
-                git branch: 'main', url: 'https://github.com/<username>/jenkins-react-demo.git'
+                sh 'node -v'
+                sh 'npm -v'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Install') {
             steps {
                 sh 'npm install'
             }
@@ -21,12 +22,6 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'npm run build'
-            }
-        }
-
-        stage('Test (optional)') {
-            steps {
-                echo 'Tests skipped 😅'
             }
         }
     }
