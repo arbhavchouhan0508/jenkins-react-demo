@@ -1,17 +1,18 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'node18'
+    }
     environment {
         VERCEL_TOKEN = credentials('vercel-token')
     }
 
     stages {
-
-        stage('Check Environment') {
+        stage('Check Node') {
             steps {
                 sh 'node -v'
                 sh 'npm -v'
-                sh 'vercel --version'
             }
         }
 
