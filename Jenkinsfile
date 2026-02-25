@@ -4,15 +4,28 @@ pipeline {
     tools {
         nodejs 'node18'
     }
+
     environment {
         VERCEL_TOKEN = credentials('vercel-token')
     }
 
     stages {
+
         stage('Check Node') {
             steps {
-                sh 'node -v'
-                sh 'npm -v'
+                sh '''
+                  node -v
+                  npm -v
+                '''
+            }
+        }
+
+        stage('Install Vercel CLI') {
+            steps {
+                sh '''
+                  npm install -g vercel
+                  vercel --version
+                '''
             }
         }
 
